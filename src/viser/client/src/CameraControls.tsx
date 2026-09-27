@@ -525,28 +525,28 @@ export function SynchronizedCameraControls() {
     
     // Only add arrow key listeners if camera keyboard controls are enabled
     if (enableArrowKeys && 'left' in keys) {
-      keys.left.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
+      keys.left!.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
         cameraControls.rotate(
           -0.05 * THREE.MathUtils.DEG2RAD * event?.deltaTime,
           0,
           true,
         );
       });
-      keys.right.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
+      keys.right!.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
         cameraControls.rotate(
           0.05 * THREE.MathUtils.DEG2RAD * event?.deltaTime,
           0,
           true,
         );
       });
-      keys.up.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
+      keys.up!.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
         cameraControls.rotate(
           0,
           -0.05 * THREE.MathUtils.DEG2RAD * event?.deltaTime,
           true,
         );
       });
-      keys.down.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
+      keys.down!.addEventListener(holdEvent.HOLD_EVENT_TYPE.HOLDING, (event) => {
         cameraControls.rotate(
           0,
           0.05 * THREE.MathUtils.DEG2RAD * event?.deltaTime,

@@ -9,6 +9,7 @@ import browserslistToEsbuild from "browserslist-to-esbuild";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./",
   plugins: [
     react(),
     eslint({ failOnError: false, failOnWarning: false }),
