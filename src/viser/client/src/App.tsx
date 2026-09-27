@@ -45,6 +45,7 @@ import { useDevSettingsStore } from "./DevSettingsStore";
 import { useThrottledMessageSender } from "./WebsocketUtils";
 import { rayToViserCoords } from "./WorldTransformUtils";
 import { theme } from "./AppTheme";
+import { isStudioEmbed, usePortalAppearance } from "./PortalAppearance";
 import { FrameSynchronizedMessageHandler } from "./MessageHandler";
 import { PlaybackFromFile } from "./FilePlayback";
 import { SplatRenderContext } from "./Splatting/GaussianSplats";
@@ -278,7 +279,9 @@ function ViewerRoot() {
  */
 function ViewerContents({ children }: { children: React.ReactNode }) {
   const viewer = React.useContext(ViewerContext)!;
-  const darkMode = viewer.useGui((state) => state.theme.dark_mode);
+  const portalMode = usePortalAppearance(viewer);
+  const serverDarkMode = viewer.useGui((state) => state.theme.dark_mode);
+  const darkMode = portalMode === null ? serverDarkMode : portalMode === "dark";
   const colors = viewer.useGui((state) => state.theme.colors);
   const controlLayout = viewer.useGui((state) => state.theme.control_layout);
   const showLogo = viewer.useGui((state) => state.theme.show_logo);
@@ -290,9 +293,11 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
     () =>
       createTheme({
         ...theme,
-        ...(colors === null
-          ? {}
-          : { colors: { custom: colors }, primaryColor: "custom" }),
+        ...(isStudioEmbed()
+          ? { primaryColor: "elastic" }
+          : colors === null
+            ? {}
+            : { colors: { ...theme.colors, custom: colors }, primaryColor: "custom" }),
       }),
     [colors],
   );

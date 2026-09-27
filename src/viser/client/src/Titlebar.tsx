@@ -1,3 +1,4 @@
+import { isStudioEmbed } from "./PortalAppearance";
 import { ViewerContext } from "./ViewerContext";
 import { ThemeConfigurationMessage } from "./WebsocketMessages";
 import {
@@ -140,6 +141,13 @@ export function Titlebar() {
   const [burgerOpen, burgerHandlers] = useDisclosure(false);
 
   const onDarkModeChange = (checked: boolean) => {
+    if (isStudioEmbed()) {
+      window.parent.postMessage(
+        { type: "elastic-studio:set-theme", theme: checked ? "dark" : "light" },
+        window.location.origin,
+      );
+      return;
+    }
     viewer.useGui.setState({
       theme: {
         ...viewer.useGui.getState().theme,
@@ -232,7 +240,9 @@ export function Titlebar() {
                     )
                   }
                   color="gray"
-                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                  aria-label={
+                    darkMode ? "Switch to light mode" : "Switch to dark mode"
+                  }
                 />
               </Tooltip>
             ) : null}

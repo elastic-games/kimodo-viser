@@ -18,15 +18,15 @@ export interface TimelineTheme {
 }
 
 export const DARK_THEME: TimelineTheme = {
-  timeCursorColor: "#52A5F4",
-  backgroundColor: "#2C2E33",
-  frameLabelColor: "#A6A7AB",
-  frameTickColor: "#41434A",
-  promptBorderColor: "#1A1B1E",
+  timeCursorColor: "#3794FF",
+  backgroundColor: "#252526",
+  frameLabelColor: "#A6A6A6",
+  frameTickColor: "#3C3C3C",
+  promptBorderColor: "#1E1E1E",
   promptTextColor: "#FFFFFF",
-  trackLabelColor: "#A6A7AB",
-  trackSeparatorColor: "#41434A",
-  labelOverlayColor: "#2C2E33",
+  trackLabelColor: "#A6A6A6",
+  trackSeparatorColor: "#3C3C3C",
+  labelOverlayColor: "#252526",
   keyframeBorderColor: "#FFFFFF",
   intervalBorderColor: "#FFFFFF",
   headerShadowColor: "rgba(0, 0, 0, 0.2)",
